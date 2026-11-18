@@ -1,0 +1,243 @@
+//Gobal variables
+var score = 0;
+
+//Lists
+var informationSelect = 
+["Citizen Science",
+"Cleaning Data",
+"Crowd sourcing",
+"Information",
+"Data bias",
+"Data filtering",
+"Data",
+"Algorithm",
+"Causation and correlation"];
+
+var informationList =
+["Citizen Science is scientific research conducted in whole or part by distributed individuals, many of whom may not be scientists, who contribute relevant data to research using their own computing devices.",
+"Cleaning data is  a process that makes the data uniform without changing its meaning (e.g., replacing all equivalent abbreviations, spellings, and capitalizations with the same word).",
+"Crowdsourcing is the practice of obtaining input or information from a large number of people via the Internet.",
+"Information is the collection of facts and patterns extracted from data.",
+"Data bias is data that does not accurately reflect the full population or phenomenon being studied.",
+"Data filtering: choosing a smaller subset of a data set to use for analysis, for example by eliminating / keeping only certain rows in a table.",
+"Data represents information in a structured format",
+"Algorithm is a set of instructions to solve a specific problem",
+"Correlation indicates a statistical relationship between variables, while causation implies that changes in one variable directly influence changes in another. Correlation does not equal causation."];
+
+var imageList =
+["https://www.simplilearn.com/ice9/free_resources_article_thumb/Types_of_Artificial_Intelligence.jpg",
+"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Data_types_-_en.svg/1200px-Data_types_-_en.svg.png",
+"https://sites.rutgers.edu/books-we-read/wp-content/uploads/sites/248/2020/10/citscigraphic2-300x251.png",
+"https://images.klipfolio.com/website/public/11f3da89-351a-4ca1-a59d-b6806b0fcec1/algorithm.jpg",
+"https://statisticseasily.com/wp-content/uploads/2023/05/correlation-vs-causality-2.jpg"];
+
+//Allows the user interface on the information screen to work
+onEvent("informationDropdown", "change", function( ) {
+  var userSelect = getText("informationDropdown");
+  var informationOutput;
+  for (var i = 0; i < informationSelect.length; i++) {
+    if (userSelect == informationSelect[i]) {
+      informationOutput = informationList[i];
+    }
+  }
+  setText("informationOutput", informationOutput);
+});
+onEvent("pictureButton1", "click", function( ) {
+  setProperty("setImage1", "image", imageList[0]);
+});
+
+//Code for user interface of the quiz
+
+//Question one
+onEvent("correct1", "click", function( ) {
+  correct();
+  q2();
+});
+onEvent("pictureButton2", "click", function( ) {
+  setProperty("setImage2", "image", imageList[1]);
+});
+
+//Question two
+onEvent("correct2", "click", function( ) {
+  correct1();
+  q3();
+});
+onEvent("pictureButton3", "click", function( ) {
+  setProperty("setImage3", "image", imageList[2]);
+});
+
+//Question three
+onEvent("correct3", "click", function( ) {
+  correct2();
+  q4();
+});
+onEvent("pictureButton4", "click", function( ) {
+  setProperty("setImage4", "image", imageList[3]);
+});
+
+//Question four
+onEvent("correct4", "click", function( ) {
+  correct3();
+  q5();
+});
+onEvent("pictureButton5", "click", function( ) {
+  setProperty("setImage5", "image", imageList[4]);
+});
+
+//Question five
+onEvent("correct5", "click", function( ) {
+  correct4();
+  scoreScreen();
+});
+
+//User interface for the end of the quiz
+onEvent("getScore1", "click", function( ) {
+  setText("scoreOutput", score + "/5");
+});
+
+//User navigation (going from page to page)
+
+//Makes it so that if the user selects the wrong answer they'll still be moved to the next screen
+onEvent("wrong1", "click", function( ) {
+  q2();
+});
+onEvent("wrong2", "click", function( ) {
+  q2();
+});
+onEvent("wrong3", "click", function( ) {
+  q2();
+});
+
+onEvent("wrong4", "click", function( ) {
+  q3();
+});
+onEvent("wrong5", "click", function( ) {
+  q3();
+});
+onEvent("wrong6", "click", function( ) {
+  q3();
+});
+
+onEvent("wrong7", "click", function( ) {
+  q4();
+});
+onEvent("wrong8", "click", function( ) {
+  q4();
+});
+onEvent("wrong9", "click", function( ) {
+  q4();
+});
+
+onEvent("wrong10", "click", function( ) {
+  q5();
+});
+onEvent("wrong11", "click", function( ) {
+  q5();
+});
+onEvent("wrong12", "click", function( ) {
+  q5();
+});
+
+onEvent("wrong13", "click", function( ) {
+  scoreScreen();
+});
+onEvent("wrong14", "click", function( ) {
+  scoreScreen();
+});
+onEvent("wrong15", "click", function( ) {
+  scoreScreen();
+});
+
+//1TitleScreen buttons
+onEvent("informationButton1", "click", function( ) {
+  setScreen("2InformationScreen");
+});
+onEvent("quizPageButton1", "click", function( ) {
+  quiz();
+});
+
+//2InformationScreen buttons
+onEvent("homeButton1", "click", function( ) {
+  home();
+});
+onEvent("quizPageButton2", "click", function( ) {
+  quiz();
+});
+
+//3QuizStartPage buttons
+onEvent("homeButton2", "click", function( ) {
+  home();
+});
+onEvent("startQuizButton1", "click", function( ) {
+  setScreen("4QuizQuestion1");
+});
+
+//5scoreScreen buttons
+onEvent("homeButton3", "click", function( ) {
+  home();
+});
+
+//Navigation functions (for page naviagation that repeats)
+function home() {
+  setScreen("1TitleScreen");
+}
+function quiz() {
+  setScreen("3QuizStartPage");
+}
+
+//Sets screen to the next question
+function q2() {
+  setScreen("4QuizQuestion2");
+}
+
+function q3() {
+  setScreen("4QuizQuestion3");
+}
+
+function q4() {
+  setScreen("4QuizQuestion4");
+}
+
+function q5() {
+  setScreen("4QuizQuestion5");
+}
+
+function scoreScreen() {
+  setScreen("5scoreScreen");
+}
+
+//Function to check if the user has selected the correct answer
+function correct() {
+  var correct1 = getChecked("correct1");
+  if (correct1 == true) {
+    score = score + 1;
+  }
+}
+
+function correct1() {
+  var correct2 = getChecked("correct2");
+  if (correct2 == true) {
+    score = score+1;
+  }
+}
+
+function correct2() {
+  var correct3 = getChecked("correct3");
+  if (correct3 == true) {
+    score = score + 1;
+  }
+}
+
+function correct3() {
+  var correct4 = getChecked("correct4");
+  if (correct4 == true) {
+    score = score+1;
+  }
+}
+
+function correct4() {
+  var correct5 = getChecked("correct5");
+  if (correct5 == true) {
+    score = score+1;
+  }
+}
