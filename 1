@@ -1,0 +1,83 @@
+//Function page user interface
+var functionNameList = 
+["Student Information",
+"Gradebook",
+"Attendance Tracking",
+"Scheduling",
+"Communication",
+"Parent Portal",
+"Reporting and Analytics",
+"Special Education",
+"Integration",
+"Administrative" ];
+var functionList = 
+["PowerSchool maintains detailed records of student demographics, attendance, grades, and disciplinary actions. It helps schools keep track of each student's academic progress and personal information.", 
+"Teachers use PowerSchool to manage their gradebooks, record grades for assignments, quizzes, and exams, and communicate students' progress to parents and administrators.", 
+"PowerSchool allows schools to track student attendance efficiently. Teachers can quickly record attendance, and administrators can monitor attendance patterns and identify students who may need intervention.",
+"PowerSchool assists schools in creating and managing class schedules for students and teachers. It helps ensure that students are enrolled in the appropriate courses and that teachers are assigned to the right classes.",
+"PowerSchool facilitates communication between teachers, parents, and students. It provides tools for sending announcements, progress reports, and other important information via email, text messages, or the PowerSchool Parent Portal.",
+"The Parent Portal allows parents to access their child's academic information, including grades, attendance, assignments, and school announcements. It promotes transparency and enables parents to stay informed about their child's education.",
+"PowerSchool offers reporting and analytics tools that allow administrators to analyze student data, track trends, and generate custom reports to support decision-making and improve student outcomes.",
+"PowerSchool includes features to support special education programs, such as managing Individualized Education Plans (IEPs), tracking accommodations and modifications, and generating compliance reports.",
+"PowerSchool integrates with other educational software and systems, such as learning management systems (LMS), assessment platforms, and finance systems, to streamline data sharing and workflows across the school or district.",
+"PowerSchool provides administrative tools for managing user accounts, configuring system settings, and ensuring data security and compliance with privacy regulations."];
+onEvent("functionDropdown", "change", function( ) {
+  var userSelect = getText("functionDropdown");
+  var functionOutput;
+  for (var i = 0; i < functionNameList.length; i++) {
+    if (userSelect == functionNameList[i]) {
+      functionOutput = functionList[i];
+    }
+  }
+  setText("functionInfo", functionOutput);
+});
+//Purpose page user interface
+onEvent("purposeDropdown", "change", function( ) {
+  var userSelect = getText("purposeDropdown");
+  if (userSelect == "What does it do?") {
+    setText("purposeInfo", "-Manages student data." + "\n" + "-Tracks grades, attendance, and schedules." + "\n" + "-Provides a platform for educators and parents.");
+  } else if ((userSelect == "What kind of data is collected?")) {
+    setText("purposeInfo", "-Personal information such as name, address, contact details." + "\n" + "-Academic records such as grades, attendance, transcripts." + "\n" + "-Enrollment information." + "\n" + "-Demographic data." + "\n" + "-Disciplinary records.");
+  } else if (userSelect == "How is data collected?") {
+    setText("purposeInfo", "-Manual entry by administrators, teachers, and staff." + "\n" + "-Automatic generation or importation from other systems.");
+  } else if (userSelect == "What is the effect of the website?") {
+    setText("purposeInfo", "-Streamlines administrative tasks." + "\n" + "-Enhances communication." + "\n" + "-Centralizes access to student data." + "\n" + "-Facilitates tracking of student progress." + "\n" + "-Supports parent involvement in education.");
+  } else {
+    setText("purposeInfo", "https://www.powerschool.com/");
+  }
+});
+//Concerns page user interface
+var concernsInfo = ((((("-Data Security and Privacy" + "\n") + "-Usability and Training")  + "\n" + "-System Reliability") + "\n" + "-Data Accuracy") + "\n" + "-Transparency and Communication") + "\n" + "-Equity and Accessibility";
+var addressingConcernsInfo = "-Ensure strict adherence to data security protocols, including encryption and access controls." + "\n" + "-Conduct regular security audits to identify and address vulnerabilities." + "\n" + "-Implement clear privacy policies and provide training on handling sensitive information." + "\n" + "-Provide comprehensive training and ongoing support for users." + "\n" + "-Offer tutorials, workshops, and resources to help users navigate the system effectively." + "\n" + "-Address user feedback to improve the platform's usability." + "\n" + "-Monitor system performance regularly and address any downtime or technical issues promptly." + "\n" + "-Implement redundant systems for backup to minimize disruptions." + "\n" + "-Provide timely updates and maintenance to ensure smooth operation." + "\n" + "-Establish verification processes to ensure data entered into PowerSchool is accurate." + "\n" + "-Conduct regular audits to identify and correct errors." + "\n" + "-Provide training on data entry best practices for staff." + "\n" + "-Provide clear channels for feedback and updates, such as newsletters and forums." + "\n" + "-Encourage open dialogue between stakeholders to address concerns and suggestions." + "\n" + "-Ensure transparency in decision-making processes related to the use of PowerSchool." + "\n" + "-Ensure the platform is accessible to all users, including those with disabilities." + "\n" + "-Provide alternative methods of access for users with limited technology access." + "\n" + "-Ensure compliance with accessibility standards to promote inclusivity.";
+onEvent("concernsInfoButton", "click", function( ) {
+  setText("concernsInfo", concernsInfo);
+});
+onEvent("addressingConcernsInfoButton", "click", function( ) {
+  setText("addressingConcernsInfo", addressingConcernsInfo);
+});
+//User navigation
+//Function that takes you back to the title page
+function title() {
+  setScreen("1Title");
+}
+//Function page
+onEvent("functionButton", "click", function( ) {
+  setScreen("2Function");
+});
+onEvent("titleButton1", "click", function( ) {
+  title();
+});
+//Purpose page
+onEvent("purposeButton", "click", function( ) {
+  setScreen("3Purpose");
+});
+onEvent("titleButton2", "click", function( ) {
+  title();
+});
+//Concerns page
+onEvent("concernsButton", "click", function( ) {
+  setScreen("4Concerns");
+});
+onEvent("titleButton3", "click", function( ) {
+  title();
+});
