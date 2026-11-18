@@ -1,0 +1,174 @@
+//Homepage navigation
+
+onEvent("homeButton", "click", function( ) {
+  home();
+  setText("?sinLabel", "");
+  setProperty("sinusoidalImage", "image", "");
+  setProperty("sinusoidalDropdown", "text", "Sinusoidal graphs");
+});
+
+onEvent("homeButton2", "click", function( ) {
+  home();
+  setText("degreeLabel", "");
+  setText("degreeInput", "");
+});
+
+onEvent("homeButton3", "click", function( ) {
+  home();
+  setProperty("triangleImage", "image", "");
+  setProperty("triangleLabel", "text", "");
+  setProperty("triangleDropdown", "text", "Triangles");
+});
+
+onEvent("homeButton4", "click", function( ) {
+  home();
+  setProperty("unit2Image", "image", "");
+  setProperty("unit2Label", "text", "");
+});
+
+onEvent("circle2Button", "click", function( ) {
+  home();
+});
+
+onEvent("sinusoidalButton", "click", function( ) {
+  setScreen("sinusoidalPage");
+});
+
+onEvent("triangleButton", "click", function( ) {
+  setScreen("trianglePage");
+});
+
+onEvent("circleButton", "click", function( ) {
+  setScreen("unitPage");
+});
+
+onEvent("circle2Button", "click", function( ) {
+  setScreen("unit2Page");
+});
+
+onEvent("changeUnitPageButton", "click", function( ) {
+  setScreen("unitPage");
+  setProperty("degreeInput", "text", "");
+  setProperty("degreeLabel", "text", "");
+});
+
+onEvent("unitToUnit2Button", "click", function( ) {
+  setScreen("unit2Page");
+  setProperty("unit2Image", "image", "");
+  setProperty("unit2Label", "text", "");
+});
+
+//Images
+
+var imageList = [
+  ({ name: "sin", image: "https://www.nextlevelmaths.com/resources/trigonometry/trig_graphs/images/sin_labels.png", attribution: "Photo by Unknown" }),
+  ({ name: "cos", image: "https://mathbooks.unl.edu/PreCalculus/images/imagesChap13/cosinegraph2.png", attribution: "Photo by Unknown" }),
+  ({ name: "equilateral", image: "https://www.math.net/img/a/geometry/triangles/equilateral-triangle/equilateral-triangle.png", attribution: "Photo by Unknown" }),
+  ({ name: "scalene", image: "https://thirdspacelearning.com/wp-content/uploads/2023/05/Scalene-Triangles-image-8-US.png", attribution: "Photo by Unknown" }),
+  ({ name: "isosceles", image: "https://graphicmaths.com/img/gcse/geometry/circle-geometry/2-radii-isosceles.png", attribution: "Photo by Unknown" }),
+  ({ name: "right", image: "https://media.geeksforgeeks.org/wp-content/uploads/20211226214223/WhatsAppImage20211226at94200PM-660x414.jpeg", attribution: "Photo by Unknown" }),
+  ({ name: "30-60-90", image: "https://cdn1.byjus.com/wp-content/uploads/2021/12/30-60-90-Formulas-01.png", attribution: "Photo by Unknown" }),  
+  ({ name: "45-45-90", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTEuxe4tiFD0tMLoIX9gBMuuIwDLaYSujUuLDN0yaO7fueeUUMDphUD-iO191gDf_-E68:https://www.varsitytutors.com/assets/vt-hotmath-legacy/hotmath_help/topics/45-45-90-triangles/triangle1.gif&usqp=CAU", attribution: "Photo by Unknown" }),
+  ({ name: "unitCircle", image: "https://www.dummies.com/wp-content/uploads/323183.image0.jpg", attribution: "Photo by Unknown" }),  
+];
+
+//Random numbers for a loop
+
+var randomDegrees = [30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330, 360];
+
+//Text
+
+var textList = [
+  { name: "sinusoidal", text: "A sinusoidal is a periodic wave whose waveform is the trigonometric sine function" },
+  ({ name: "equilateral", text: "A equilateral triangle is a triangle in which all three sides have the same length." }),
+  ({ name: "scalene", text: "A scalene triangle is a triangle whose all three sides have different lengths, and all three angles are of different measures." }), 
+  ({ name: "isosceles", text: "A isoceles triangle is a triangle that has two sides of equal length." }),
+  ({ name: "right", text: "A right triangle is a triangle in which two sides are perpendicular, forming a right angle." }),
+  ({ name: "30-60-90", text: "A special right triangle with angles 30°, 60°, and 90°" }),
+  ({ name: "45-45-90", text: "A special right triangle with angles 45°, 45°, and 90°" }),
+  ({ name: "unitCircleText", text: "In mathematics, a unit circle is a circle of unit radius—that is, a radius of 1." })
+];
+
+//Declaring gobal variables
+
+var sinusoidalSelect;
+var triangleSelect;
+
+//Events on sinusoidal page
+
+onEvent("?sinButton", "click", function( ) {
+  setText("?sinLabel", textList[0].text);
+});
+
+onEvent("sinusoidalDropdown", "change", function( ) {
+  sinusoidalSelect = getText("sinusoidalDropdown");
+  if (sinusoidalSelect == "Sin") {
+    setProperty("sinusoidalImage", "image", (imageList[0]).image);
+  } else if (sinusoidalSelect == "Cos") {
+    setProperty("sinusoidalImage", "image", (imageList[1]).image);
+  } else {
+    setProperty("sinusoidalImage", "image", "");
+  }
+});
+
+//Events on triangle page
+
+onEvent("triangleDropdown", "change", function( ) {
+  triangleSelect = getText("triangleDropdown");
+  if (triangleSelect == "equilateral") {
+    setProperty("triangleImage", "image", (imageList[2]).image);
+    setText("triangleLabel", (textList[1]).text);
+  } else if ((triangleSelect == "scalene")) {
+    setProperty("triangleImage", "image", (imageList[3]).image);
+    setText("triangleLabel", (textList[2]).text);
+  } else if (triangleSelect == "isosceles") {
+    setProperty("triangleImage", "image", (imageList[4]).image);
+    setText("triangleLabel", (textList[3]).text);
+  } else if ((triangleSelect == "right triangle")) {
+    setProperty("triangleImage", "image", (imageList[5]).image);
+    setText("triangleLabel", (textList[4]).text);
+  } else if ((triangleSelect == "30-60-90 triangle")) {
+    setProperty("triangleImage", "image", (imageList[6]).image);
+    setText("triangleLabel", (textList[5]).text);
+  } else if ((triangleSelect == "45-45-90 triangle")) {
+    setProperty("triangleImage", "image", (imageList[7]).image);
+    setText("triangleLabel", (textList[6]).text);
+  } else {
+    setProperty("triangleImage", "image", "");
+    setText("triangleLabel", "Please select another option");
+  }
+});
+
+//Determines which quadrant the degree is in on common degrees page (which is named unit page)
+
+onEvent("degreeInput", "change", function( ) {
+  var degree = getText("degreeInput");
+  for (var i = 0; i < randomDegrees.length; i++) {
+    if (degree <= 90) {
+      setText("degreeLabel", degree + " degrees is in the first quadrant");
+    } else if (degree <= 180) {
+      setText("degreeLabel", degree + " degrees is in the second quadrant");
+    } else if (degree <= 270) {
+      setText("degreeLabel", degree + " degrees is in the third quadrant");
+    } else if (degree <= 360) {
+      setText("degreeLabel", degree + " degrees is in the fourth quadrant");
+    } else {
+      setText("degreeLabel", "Please type in a number from 0 to 360");
+    }
+  }
+});
+
+//Events on the second unit circle page
+
+onEvent("unitCircleImageButton", "click", function( ) {
+  setProperty("unit2Image", "image", (imageList[8]).image);
+  setText("unit2Label", (textList[7]).text);
+});
+
+//Functions
+
+//This function sets the screen to the homepage
+
+function home() {
+  setScreen("home");
+}
